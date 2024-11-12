@@ -19,9 +19,14 @@ Access to Ollama's LLM
 
 
 pdf_splitter(pdf_doc: str): Extracts text from each page of a PDF, filtering out smaller fonts to focus on main content.
+
 text_chunking_fxn(text): Splits the extracted text into manageable chunks with specified overlap, optimizing it for vector storage.
+
 get_vectorstores(text_chunks, vectordb: str): Creates a vector store using FAISS or Chroma for the given text chunks. The vector store enables efficient retrieval of chunks during conversation.
+
 get_indexing(pdf_name: str, outputfilename: str): Integrates pdf_splitter, text_chunking_fxn, and get_vectorstores functions to process a PDF and save it into a FAISS vector store file.
+
 create_conversation(vectorstore, model_name: str, model_temperature): Configures the conversational chain using LangChain, embedding the LLM and memory to maintain context.
+
 run_conversation(conversation_chain, user_input: str): Runs a single round of question-and-answer within the conversation chain.
 chat_until_bye(conversation_chain): Loops the chatbot interaction until the user inputs "okay bye".
