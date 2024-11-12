@@ -9,8 +9,8 @@ warnings.filterwarnings('ignore')
 
 
 embedding_models = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
-#vector_store = DP.get_indexing('coi.pdf','coi_faiss')
-vectorstore = FAISS.load_local("coi_faiss",embeddings=embedding_models,allow_dangerous_deserialization=True)
+#vector_store = DP.get_indexing('coi.pdf','coi_faiss')  uncomment this only when u want to create new vectorstor
+vectorstore = FAISS.load_local("coi_faiss",embeddings=embedding_models,allow_dangerous_deserialization=True) #this is for reloading the vector store created
 
 
 def create_conversation(vectorstore,model_name:str, model_temperature):
@@ -27,8 +27,8 @@ def chat_until_bye(conversation_chain):
     print("Bot: Hello! How can I assist you today?")
     
     while True:
-        user_input = input("You: ")  # Get user input
-        if "okay bye" in user_input.lower():  # Check if user says 'okay bye'
+        user_input = input("You: ")  
+        if "okay bye" in user_input.lower():  
             print("Bot: Goodbye! Have a great day!")
             break  # Exit the loop if user says 'okay bye'
         
